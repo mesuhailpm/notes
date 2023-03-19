@@ -1,0 +1,13 @@
+{
+    "emmet.preferences": {
+        "javascript": "javascriptreact"
+    },
+    "emmet.includeLanguages": {
+        "javascript": "javascriptreact"
+    },
+    "emmet.syntaxProfiles": {
+
+    },
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "nuclide.prettier"
+}
