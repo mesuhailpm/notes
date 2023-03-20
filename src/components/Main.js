@@ -11,7 +11,7 @@ export default function Main ({notes,updateNote,currentNoteID,currentNote}){
            currentNote &&
             <div className='main'>
 
-                <div className="editor">
+                <div className="main-editor">
                     <input type="text"
                         className="note-edit-title"
                         value={currentNote.title}

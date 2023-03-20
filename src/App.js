@@ -9,7 +9,9 @@ export default function App() {
 	const [notes,setNotes] = useState(JSON.parse(localStorage.getItem("notes")) || [])
   const [currentNoteID, setCurrentNoteId] = useState(notes[0]?notes[0].id:"")
   const [currentNote,setCurrentNote] = useState({})
-  const [trigger,setTrigger] = useState(false)
+  const [triggerDelete,setTriggerDelete] = useState(false)
+  const [triggerClear,setTriggerClear] = useState(false)
+
   const [idToBeDeleted,setIdToBeDeleted] =useState(null)
   console.log(localStorage.notes)
 
@@ -17,8 +19,12 @@ export default function App() {
   {setCurrentNote(findCurrentNote())},[currentNoteID,notes])
   useEffect(()=>{localStorage.setItem("notes",JSON.stringify(notes))},[notes])
 
-  function clearNotes(){
+  function handleClear(){
+    setTriggerClear(!triggerClear)
+  }
+  function confirmClear(){
     setNotes([])
+    setTriggerClear(!triggerClear)
   }
   function selectNote(id){
     //console.log('clicked on note id'+id)
@@ -28,13 +34,13 @@ export default function App() {
     event.stopPropagation()
     setIdToBeDeleted(idToDelete)
     setTimeout(()=>
-    {setTrigger(!trigger)},200)
+    {setTriggerDelete(!triggerDelete)},200)
   }
 
   function confirmDelete(){
     // console.log(event,idToDelete)
     setNotes(notes.filter(note=> note.id!=idToBeDeleted))
-    setTrigger(!trigger)
+    setTriggerDelete(!triggerDelete)
   }
 
   function addNote(){
@@ -81,6 +87,7 @@ export default function App() {
             currentNoteID={currentNoteID}
             confirmDelete={confirmDelete}
             handleDelete={handleDelete}
+            handleClear={handleClear}
             />
 
           <Main
@@ -90,20 +97,33 @@ export default function App() {
             currentNote={currentNote}
             />
 
-          {trigger &&
-          <div id='popup'
-          // trigger={trigger}
-          // setTrigger={setTrigger}
-        >
+          {triggerDelete &&
+          <div id='popup'>
             <div className="popup">
               <div className="popup-container">
                 <div className="popup-text">Do you want to delete the note? it can't be undone</div>
-                <button className="popup-button" onClick={confirmDelete}>Yes</button>
-                <button className="popup-button" onClick={()=>setTrigger(!trigger)}>No</button>
+                <div className="popup-buttons">
+                  <button className="popup-button" onClick={confirmDelete}>Yes</button>
+                  <button className="popup-button" onClick={()=>setTriggerDelete(!triggerDelete)}>No</button>
+                </div>
               </div>
             </div>
 
           </div>}
+          {triggerClear &&
+          <div id='popup'>
+            <div className="popup">
+              <div className="popup-container">
+                <div className="popup-text">Do you want to delete all notes? This is permanent</div>
+                <div className="popup-buttons">
+                  <button className="popup-button" onClick={confirmClear}>Clear</button>
+                  <button className="popup-button" onClick={()=>setTriggerClear(!triggerClear)}>Cancel</button>
+                </div>
+              </div>
+            </div>
+
+          </div>}
+
 
 
 

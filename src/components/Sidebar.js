@@ -1,4 +1,4 @@
-export default function Sidebar({notes,addNote,currentNote,selectNote,currentNoteID,handleDelete}){
+export default function Sidebar({notes,addNote,currentNote,selectNote,currentNoteID,handleDelete,handleClear}){
 
     //const sortedNotes = [...notes].sort((a,b)=> a.time - b.time);
     // console.log('sortedNotes')
@@ -39,6 +39,9 @@ export default function Sidebar({notes,addNote,currentNote,selectNote,currentNot
                     </div>)
                 }
                 )}
+            </div>
+            <div className="pane-clear" onClick={handleClear}>
+                <button className="clear-button">Delete all notes</button>
             </div>
 
         </div>
