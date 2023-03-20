@@ -1,4 +1,4 @@
-export default function Sidebar({notes,addNote,currentNote,selectNote,currentNoteID,deleteNote}){
+export default function Sidebar({notes,addNote,currentNote,selectNote,currentNoteID,handleDelete}){
 
     //const sortedNotes = [...notes].sort((a,b)=> a.time - b.time);
     // console.log('sortedNotes')
@@ -30,7 +30,7 @@ export default function Sidebar({notes,addNote,currentNote,selectNote,currentNot
                         <div className="note-snippet-right">
                                 <button
                                     className="delete-btn"
-                                    onClick={(event)=>deleteNote(event,note.id)}
+                                    onClick={(event)=>handleDelete(event,note.id)}
                                 >
                                     <i className="gg-trash trash-icon"></i>
                                 </button>

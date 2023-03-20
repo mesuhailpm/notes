@@ -1,5 +1,3 @@
-import ReactMde from "react-mde"
-import Showdown from "showdown"
 import ReactMarkdown from 'react-markdown'
 
 

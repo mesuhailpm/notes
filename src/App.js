@@ -1,9 +1,7 @@
 import './App.css';
 import {nanoid} from 'nanoid'
-import Split from 'react-split';
 import Main from './components/Main'
 import Sidebar from './components/Sidebar'
-import Popup from './components/Popup'
 import { useEffect, useState } from 'react';
 
 
@@ -12,6 +10,7 @@ export default function App() {
   const [currentNoteID, setCurrentNoteId] = useState(notes[0]?notes[0].id:"")
   const [currentNote,setCurrentNote] = useState({})
   const [trigger,setTrigger] = useState(false)
+  const [idToBeDeleted,setIdToBeDeleted] =useState(null)
   console.log(localStorage.notes)
 
   useEffect(()=>
@@ -25,16 +24,18 @@ export default function App() {
     //console.log('clicked on note id'+id)
     setCurrentNoteId(id)
   }
-  function deleteNote(event,idToDelete){
-
-    
-    event.preventDefault()
-    console.log(event,idToDelete)
-    setNotes(notes.filter(note=> note.id!=idToDelete))
+  function handleDelete(event,idToDelete){
+    event.stopPropagation()
+    setIdToBeDeleted(idToDelete)
     setTimeout(()=>
     {setTrigger(!trigger)},200)
   }
 
+  function confirmDelete(){
+    // console.log(event,idToDelete)
+    setNotes(notes.filter(note=> note.id!=idToBeDeleted))
+    setTrigger(!trigger)
+  }
 
   function addNote(){
     const newNote={id:nanoid(),title:'Untitled',body:'Replace me with your note',
@@ -78,7 +79,8 @@ export default function App() {
             currentNote={currentNote}
             selectNote={selectNote}
             currentNoteID={currentNoteID}
-            deleteNote={deleteNote}
+            confirmDelete={confirmDelete}
+            handleDelete={handleDelete}
             />
 
           <Main
@@ -88,17 +90,20 @@ export default function App() {
             currentNote={currentNote}
             />
 
-          <Popup
-          trigger={trigger}
-          setTrigger={setTrigger}>
+          {trigger &&
+          <div id='popup'
+          // trigger={trigger}
+          // setTrigger={setTrigger}
+        >
             <div className="popup">
               <div className="popup-container">
                 <div className="popup-text">Do you want to delete the note? it can't be undone</div>
-                <button className="popup-button">Yes</button>
+                <button className="popup-button" onClick={confirmDelete}>Yes</button>
+                <button className="popup-button" onClick={()=>setTrigger(!trigger)}>No</button>
               </div>
             </div>
 
-          </Popup>
+          </div>}
 
 
 

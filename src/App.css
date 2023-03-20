@@ -294,7 +294,7 @@ textarea{
     border: solid;
   }
 /* Popup styles */
-.popup{
+#popup{
     border:solid;
     min-width: 100vw;
     min-height: 100vh;
