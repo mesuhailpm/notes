@@ -1,4 +1,4 @@
-export default function Sidebar({notes,addNote,currentNote,selectNote,currentNoteID,handleDelete,handleClear}){
+export default function Sidebar({notes,addNote,currentNote,selectNote,currentNoteID,handleDelete,handleClear,darkMode,setDarkMode}){
 
     //const sortedNotes = [...notes].sort((a,b)=> a.time - b.time);
     // console.log('sortedNotes')
@@ -11,6 +11,14 @@ export default function Sidebar({notes,addNote,currentNote,selectNote,currentNot
         <div className='pane sidebar'>
             <div className="pane-title-container">
                 <h3 className="pane-title">Notes</h3>
+                <div className="display-mode-container" id='toggle-dark-mode'>
+                    <p className="normal-mode-text">light</p>
+                    <div className="mode-icon-container" onClick={()=>setDarkMode(!darkMode)}>
+                        <div className={`normal-mode-icon ${!darkMode ?'selected':''}`}></div>
+                        <div className={`normal-mode-icon ${darkMode ?'selected':''}`}></div>
+                    </div>
+                    <p className="dark-mode-text">dark</p>
+                </div>
                 <button className="pane-title-button" onClick={addNote}><i class="gg-add-r"></i> </button>
             </div>
 

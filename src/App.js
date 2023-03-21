@@ -11,6 +11,7 @@ export default function App() {
   const [currentNote,setCurrentNote] = useState({})
   const [triggerDelete,setTriggerDelete] = useState(false)
   const [triggerClear,setTriggerClear] = useState(false)
+  const [darkMode,setDarkMode] = useState(false)
 
   const [idToBeDeleted,setIdToBeDeleted] =useState(null)
   console.log(localStorage.notes)
@@ -74,7 +75,7 @@ export default function App() {
 
   console.log(currentNote)
   return (
-    <div className="App">
+    <div className={`app ${darkMode &&'dark'}`}>
 
     {notes.length ?
       <div className="second-page">
@@ -88,6 +89,8 @@ export default function App() {
             confirmDelete={confirmDelete}
             handleDelete={handleDelete}
             handleClear={handleClear}
+            darkMode={darkMode}
+            setDarkMode={setDarkMode}
             />
 
           <Main
