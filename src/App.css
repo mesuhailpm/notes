@@ -373,3 +373,10 @@ button.clear-button{
 .app.dark .clear-button{
     color: white;
 }
+
+.app.dark .note-snippet{
+    background-color: #343a3a;
+}
+.app.dark .note-snippet.active{
+    background-color:cyan;
+}
