@@ -2,6 +2,10 @@
 
 ![image](https://github.com/mesuhailpm/notes/assets/119756035/f78afd3b-ff09-47e7-886a-d10c21792778)
 
+# features
+> Add notes with markdown
+> Confirm delete note feature
+> Save new notes into localstorage
 
 # Getting Started with Create React App
 
