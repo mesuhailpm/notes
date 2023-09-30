@@ -1,3 +1,8 @@
+![intro](https://github.com/mesuhailpm/notes/assets/119756035/e57e5274-436e-4310-9cd1-8144f9a9206b)
+
+![image](https://github.com/mesuhailpm/notes/assets/119756035/f78afd3b-ff09-47e7-886a-d10c21792778)
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
